@@ -40,7 +40,7 @@ const StreamDetails = ({
             title="Subscription price"
             text={formatEther(details.price) + " MATIC"}
           />
-          <DetailBox title="Earned" text={data.formatted + " " + data.symbol}>
+          <DetailBox title="Earned" text={data.formatted + " " + "MATIC"}>
             <WithdrawalButton address={address} />
           </DetailBox>
         </div>
