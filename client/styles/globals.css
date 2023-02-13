@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+  @apply text-2xl font-bold text-center;
+}
+h2 {
+  @apply text-xl;
+}
+h3 {
+  @apply text-lg;
+}
+a {
+  @apply text-blue-600 underline;
+}
+
+.swiper-slide-prev {
+  @apply bg-base-300 card text-primary-content box-border shadow-2xl;
+  visibility: visible !important;
+
+}
+
+.swiper-slide-next {
+  @apply bg-base-300 card text-primary-content box-border shadow-2xl;
+  visibility: visible !important;
+
+}
+
+.swiper-slide-active {
+  @apply bg-base-300 card text-primary-content box-border shadow-2xl;
+  visibility: visible !important;
+
+
+}
+
+.swiper-slide {
+  height: 16rem !important;
+  visibility: hidden;
+}
+
+.swiper-slide-shadow {
+  display: none;
+}

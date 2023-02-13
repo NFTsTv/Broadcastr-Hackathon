@@ -1,0 +1,49 @@
+{
+  "name": "broadcastr-client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "ssl": "next dev -p 3001 & local-ssl-proxy --source 3000 --target 3001",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@livepeer/react": "^2.1.5",
+    "@livepeer/webrtmp-sdk": "^0.2.3",
+    "@rainbow-me/rainbowkit": "^0.8.1",
+    "@types/react-copy-to-clipboard": "^5.0.4",
+    "autoprefixer": "^10.4.12",
+    "axios": "^0.27.2",
+    "daisyui": "^2.31.0",
+    "ethers": "^5",
+    "init": "^0.1.2",
+    "ipfs-http-client": "^59.0.0",
+    "moment": "^2.29.4",
+    "next": "^12.3.1",
+    "npm": "^8.19.2",
+    "postcss": "^8.4.16",
+    "react": "18.2.0",
+    "react-copy-to-clipboard": "^5.1.0",
+    "react-dom": "18.2.0",
+    "react-share": "^4.4.1",
+    "swiper": "^8.4.5",
+    "tailwindcss": "^3.1.8",
+    "wagmi": "^0.11.5"
+  },
+  "devDependencies": {
+    "@types/node": "18.7.18",
+    "@types/react": "18.0.21",
+    "@types/react-dom": "18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "eslint": "^8.0.1",
+    "eslint-config-next": "12.3.1",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.31.8",
+    "typescript": "*"
+  }
+}
