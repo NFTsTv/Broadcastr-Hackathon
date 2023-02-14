@@ -2,6 +2,7 @@ import { CreateContext } from "context/createContext";
 import { useContext, useEffect, useState } from "react";
 import { useCreateStream } from "@livepeer/react";
 import {
+  useNetwork,
   useContractWrite,
   usePrepareContractWrite,
   useWaitForTransaction,
@@ -12,9 +13,10 @@ import { createMetadata } from "utils/helpers";
 import { post } from "utils/requests";
 import CastrFactoryABI from "contracts/CastrFactory-abi";
 import { parseEther } from "ethers/lib/utils";
-import { ContractAddress } from "utils/constants";
+import { ContractAddress, MantleAddress } from "utils/constants";
 
 const useCreateCastr = () => {
+  const { chain } = useNetwork();
   const { address } = useAccount();
   const context = useContext(CreateContext);
   const [createError, setError] = useState<string | undefined>();
@@ -33,18 +35,18 @@ const useCreateCastr = () => {
 
   const { config, isSuccess: prepareContractWriteSuccess } =
     usePrepareContractWrite({
-      address: ContractAddress,
+      address: chain?.name === "Mantle" ? MantleAddress : ContractAddress,
       abi: [...CastrFactoryABI],
       functionName: "createCastr",
       args: validateFormData()
         ? [
-            Castr.baseUri,
-            Castr.name,
-            Castr.description,
-            Castr.limitedSupply,
-            Number(Castr.totalSupply),
-            parseEther(Castr.price),
-          ]
+          Castr.baseUri,
+          Castr.name,
+          Castr.description,
+          Castr.limitedSupply,
+          Number(Castr.totalSupply),
+          parseEther(Castr.price),
+        ]
         : [],
     });
 

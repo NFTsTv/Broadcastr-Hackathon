@@ -1,22 +1,23 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { useAccount, useContractRead, Address } from "wagmi";
+import { useNetwork, useAccount, useContractRead, Address } from "wagmi";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Container from "components/Elements/Container";
 import factoryContract from "contracts/CastrFactory-abi";
-import { Routes, ProtectedRutes, ContractAddress } from "utils/constants";
+import { Routes, ProtectedRutes, ContractAddress, MantleAddress } from "utils/constants";
 
 const Layout = ({ children }: { children: ReactNode }) => (
   <div className=" h-screen mx-auto w-screen">{children}</div>
 );
 
 const Router = ({ children }: { children: ReactNode }) => {
+  const { chain } = useNetwork();
   const router = useRouter();
   const route = router.pathname as Routes;
   const { isConnected, address, status } = useAccount();
   const [isLoading, setIsLoading] = useState(true);
   const { data, isLoading: loadingRead } = useContractRead({
-    address: ContractAddress,
+    address: chain?.name === "Mantle" ? MantleAddress : ContractAddress,
     abi: factoryContract,
     functionName: "getCreatorChannels",
     args: [address],

@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
 import { useStream, useStreamSessions } from "@livepeer/react";
-import { useContractRead } from "wagmi";
+import { useContractRead, useNetwork } from "wagmi";
 import CastrFactoryABI from "contracts/CastrFactory-abi";
 import { get } from "utils/requests";
 import { parseParams } from "utils/helpers";
 import { Castr } from "types/general";
-import { ContractAddress } from "utils/constants";
+import { ContractAddress, MantleAddress } from "utils/constants";
 
 const useCastr = (address: string) => {
+  const { chain } = useNetwork();
   const [CastrData, setCastrData] = useState<Castr | null>(null);
   const [properties, setProperties] = useState({
     streamId: "",
     ownerAddress: "",
   });
   const { data } = useContractRead({
-    address: ContractAddress,
+    address: chain?.name === "Mantle" ? MantleAddress : ContractAddress,
     abi: CastrFactoryABI,
     functionName: "getMetadata",
     args: [address],
